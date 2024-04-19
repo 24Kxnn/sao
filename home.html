@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>องค์การบริหารส่วนตำบลเมืองพาน จังหวัดเชียงราย</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* เพิ่มเติมสไตล์ให้กับ Headers */
+        .site-header {
+            background-color: #6a5a46;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* เพิ่มเติมสไตล์ให้กับ Logo */
+        .site-logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* เพิ่มเติมสไตล์ให้กับ Sidebar */
+        .sidebar {
+            background-color: #202020;
+        }
+
+        .sidebar .nav-link {
+            padding: 10px 20px;
+            color: #333;
+            border-radius: 0;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #6a5a46;
+            color: #fff;
+        }
+
+        /* เพิ่มเติมสไตล์ให้กับเนื้อหาแต่ละ tab */
+        .tabcontent {
+            padding: 20px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Headers -->
+    <header class="site-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="site-logo">องค์การบริหารส่วนตำบลเมืองพาน จังหวัดเชียงราย</h1>
+            <div>
+                <button id="adminButton" class="btn btn-outline-light" style="display:none;">จัดการระบบ</button>
+                <button id="logoutButton" class="btn btn-outline-light">ออกจากระบบ</button>
+            </div>
+        </div>
+    </header>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab1">ข้อมูลส่วนตัว</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab2">ข้อมูลบุคลากร</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab3">ประวัติการศึกษา</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab4">ประวัติสัญญาจ้าง</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab5">ข้อมูลการเงิน</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab6">เครื่องราชอิสริยาภรณ์</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab7">ข้อมูลการประเมิน</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab8">บันทึกกิจกรรม</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div id="tab1" class="tabcontent">
+                    <iframe src="PersonalInformation/TabM1.html" frameborder="0"
+                        style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab2" class="tabcontent" style="display:none;">
+                    <iframe src="Personnelcrew/TabM2.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab3" class="tabcontent" style="display:none;">
+                    <iframe src="Educational/TabM3.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab4" class="tabcontent" style="display:none;">
+                    <iframe src="Contract/TabM4.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab5" class="tabcontent" style="display:none;">
+                    <iframe src="Financial/TabM5.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab6" class="tabcontent" style="display:none;">
+                    <iframe src="Insignia/TabM6.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab7" class="tabcontent" style="display:none;">
+                    <iframe src="Assessment/TabM7.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+                <div id="tab8" class="tabcontent" style="display:none;">
+                    <iframe src="ActivityLog/TabM8.html" frameborder="0" style="width: 100%; height: 600px;"></iframe>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sidebarLinks = document.querySelectorAll('.nav-link');
+            var iframes = document.querySelectorAll('.tabcontent iframe');
+            var iframeSources = [
+                "PersonalInformation/TabM1.html",
+                "Personnelcrew/TabM2.html",
+                "Educational/TabM3.html",
+                "Contract/TabM4.html",
+                "Financial/TabM5.html",
+                "Insignia/TabM6.html",
+                "Assessment/TabM7.html",
+                "ActivityLog/TabM8.html"
+            ];
+
+            function updateIframeSource(tabIndex) {
+                iframes.forEach(function (iframe, index) {
+                    if (index === tabIndex) {
+                        iframe.setAttribute('src', iframeSources[index]);
+                    } else {
+                        iframe.setAttribute('src', '');
+                    }
+                });
+            }
+
+            sidebarLinks.forEach(function (link, index) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // ป้องกันการนำทางไปยัง #tab
+
+                    // Remove active class and hide all tabs
+                    sidebarLinks.forEach(function (link) {
+                        link.classList.remove('active');
+                    });
+                    var allTabs = document.querySelectorAll('.tabcontent');
+                    allTabs.forEach(function (tab) {
+                        tab.style.display = 'none';
+                    });
+
+                    // Activate the clicked tab
+                    this.classList.add('active');
+                    var targetTab = document.getElementById(this.getAttribute('href').substring(1));
+                    targetTab.style.display = 'block';
+
+                    // Update iframe source for the clicked tab
+                    updateIframeSource(index);
+                });
+            });
+
+            // Activate the first tab and its iframe on page load
+            sidebarLinks[0].classList.add('active');
+            var firstTab = document.getElementById(iframeSources[0].split('/')[0]);
+            if (firstTab) {
+                firstTab.style.display = 'block';
+            }
+            updateIframeSource(0); // Activate the first iframe
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var adminButton = document.getElementById('adminButton');
+            // ตรวจสอบว่า sessionStorage มีค่า user_status เป็น admin หรือไม่
+            if (sessionStorage.getItem('user_status') === 'admin') {
+                adminButton.style.display = 'inline-block'; // แสดงปุ่มสำหรับ admin
+
+            }
+            var logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', function () {
+                // ลบ user_id ออกจาก sessionStorage
+                sessionStorage.removeItem('user_id');
+                sessionStorage.removeItem('user_st');
+                sessionStorage.removeItem('user_status');
+                // ไปยังหน้าอื่น ๆ ที่ต้องการ
+                window.location.href = '/index.html'; // เปลี่ยน URL ตามที่ต้องการ
+            });
+
+            // เพิ่ม Event Listener สำหรับปุ่มหน้าแอดมิน
+            adminButton.addEventListener('click', function () {
+                window.location.href = 'Ahome.html'; // ไปยังหน้า Ahome.html เมื่อกดปุ่ม
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // ตรวจสอบว่า sessionStorage มีค่า user_id หรือไม่
+            if (!sessionStorage.getItem('user_id')) {
+                // ไปยังหน้า index.html หากไม่มีค่า user_id
+                window.location.href = 'index.html';
+            }
+        });
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>องค์การบริหารส่วนตำบลเมืองพาน จังหวัดเชียงราย</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .card {
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #6a5a46;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">Login</h3>
+        </div>
+        <div class="card-body">
+            <form id="loginForm" action="http://localhost:4025/user/loginCheck" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" style="background-color: #6a5a46; border-color: #6a5a46;">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            fetch("http://localhost:4025/user/loginCheck", {
+                method: "POST",
+                headers: myHeaders,
+                body: JSON.stringify(Object.fromEntries(formData.entries())),
+                redirect: "follow"
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Login failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    sessionStorage.setItem('user_id', data.id);
+                    sessionStorage.setItem('user_status', data.user_status);
+                    // Check user status and redirect accordingly
+                    if(data.user_status === 'admin') {
+                        sessionStorage.setItem('user_st', data.id);
+                        window.location.href = "/home.html"; // Redirect to Ahome.html for admins
+                    } else if(data.user_status === 'user') {
+                        window.location.href = "/home.html"; // Redirect to home.html for users
+                    }
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>
